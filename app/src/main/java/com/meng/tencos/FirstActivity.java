@@ -15,8 +15,7 @@ public class FirstActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         lightTheme=BizService.sharedPreference.getBoolean("useLightTheme",true);
-		
-		ExceptionCatcher.getInstance().init(this);
+
         startActivity(new Intent(FirstActivity.this,MainActivity.class));
 		finish();
     }

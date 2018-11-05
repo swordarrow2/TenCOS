@@ -40,7 +40,8 @@ public class BizService extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-		
+
+        ExceptionCatcher.getInstance().init(this);
 		sharedPreference=new SharedPreferenceHelper(this,"main");
 		
 		appid=sharedPreference.getValue("appid");
