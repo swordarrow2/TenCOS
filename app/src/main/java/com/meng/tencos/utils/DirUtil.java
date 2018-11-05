@@ -98,26 +98,26 @@ public class DirUtil {
                     if (jsonObject.has("sha")) {
                         //是文件
                         if (suffix.equals("mp3") || suffix.equals("wav") || suffix.equals("ape") || suffix.equals("flac")) {
-                            resId = R.mipmap.music;
+                            resId = R.drawable.music;
                         } else if (suffix.equals("avi") || suffix.equals("mkv") || suffix.equals("mp4") || suffix.equals("rmvb")) {
-                            resId = R.mipmap.mkv;
+                            resId = R.drawable.mkv;
                         } else if (suffix.equals("txt")) {
-                            resId = R.mipmap.txt;
+                            resId = R.drawable.txt;
                         } else if (suffix.equals("apk")) {
-                            resId = R.mipmap.apk;
+                            resId = R.drawable.apk;
                         } else if (suffix.equals("pdf")) {
-                            resId = R.mipmap.pdf;
+                            resId = R.drawable.pdf;
                         } else if (suffix.equals("rar")) {
-                            resId = R.mipmap.rar;
+                            resId = R.drawable.rar;
                         } else if (suffix.equals("zip")) {
-                            resId = R.mipmap.zip;
+                            resId = R.drawable.zip;
                         } else {
-                            resId = R.mipmap.epub;
+                            resId = R.drawable.epub;
                         }
                         type = 0;
                     } else {
                         //是文件夹
-                        resId = R.mipmap.folder;
+                        resId = R.drawable.folder;
                         fileName = fileName.replaceAll("/", "");
                         type = 1;
                     }
