@@ -1,7 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <ProgressBar
         android:id="@+id/pb"
@@ -37,7 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/light_gray"
         android:orientation="horizontal"
         android:padding="6dp">
 
@@ -50,8 +48,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@drawable/upload"
                 android:gravity="center_horizontal"
-                android:text="上传"
-                android:textColor="@color/grey" />
+                android:text="上传" />
         </LinearLayout>
 
         <ImageView
@@ -68,8 +65,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@drawable/download"
                 android:gravity="center_horizontal"
-                android:text="下载"
-                android:textColor="@color/grey" />
+                android:text="下载" />
         </LinearLayout>
 
         <ImageView
@@ -86,8 +82,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@drawable/delete"
                 android:gravity="center_horizontal"
-                android:text="删除"
-                android:textColor="@color/grey" />
+                android:text="删除" />
         </LinearLayout>
 
         <ImageView
@@ -104,8 +99,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@drawable/create"
                 android:gravity="center_horizontal"
-                android:text="新建"
-                android:textColor="@color/grey" />
+                android:text="新建"/>
         </LinearLayout>
 
         <ImageView
@@ -122,8 +116,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@drawable/more"
                 android:gravity="center_horizontal"
-                android:text="更多"
-                android:textColor="@color/grey" />
+                android:text="更多" />
         </LinearLayout>
     </LinearLayout>
 
@@ -133,7 +126,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/light_gray"
         android:orientation="horizontal"
         android:visibility="gone">
 
@@ -146,8 +138,7 @@
             android:gravity="center_horizontal"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
-            android:text="新建"
-            android:textColor="@color/grey" />
+            android:text="新建" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -163,8 +154,7 @@
             android:gravity="center_horizontal"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
-            android:text="取消"
-            android:textColor="@color/grey" />
+            android:text="取消"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -180,8 +170,7 @@
             android:gravity="center_horizontal"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
-            android:text="移动"
-            android:textColor="@color/grey" />
+            android:text="移动" />
 
         <TextView
             android:id="@+id/copy"
@@ -192,8 +181,7 @@
             android:gravity="center_horizontal"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
-            android:text="复制"
-            android:textColor="@color/grey" />
+            android:text="复制" />
     </LinearLayout>
 
 </RelativeLayout>

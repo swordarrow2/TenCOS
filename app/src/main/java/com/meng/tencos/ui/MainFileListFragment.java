@@ -15,6 +15,7 @@ import android.widget.*;
 import com.meng.tencos.*;
 import com.meng.tencos.adapter.*;
 import com.meng.tencos.bean.*;
+import com.meng.tencos.lib.log;
 import com.meng.tencos.utils.*;
 import com.tencent.cos.model.*;
 import com.tencent.cos.task.listener.*;
@@ -30,12 +31,10 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS};
 
-    private BizService bizService;
     private ListView lv_files;
     private List<FileItem> files = new ArrayList<FileItem>();
     private List<FileItem> move_files = new ArrayList<FileItem>();
     private FileItemAdapter adapter;
-    private Toast mToast;
     final String savePath = Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"test_download";
     public String currentPath = "/";
     private LinearLayout ll_upload, ll_create, ll_download, ll_delete, ll_more, ll_bottom, ll_move;
@@ -62,8 +61,6 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
     }
 
     private void initView(View v){
-        bizService=BizService.getInstance();
-        mToast=Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT);
 
         lv_files=(ListView)v. findViewById(R.id.lv_files);
         adapter=new FileItemAdapter(getActivity(),files);
@@ -141,8 +138,8 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
 					}
 					if(simpleName.equals("GetObjectRequest")){
 						ObjectUtil.renameFile(cosRequest.getDownloadUrl(),savePath);
-						showTip("下载成功");
-					}
+                        log.t("下载成功");
+                    }
 				}
 			});
     }
@@ -158,7 +155,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                 str=cosResult.msg;
                 break;
         }
-        showTip(str);
+        log.t(str);
         String result = "code ="+cosResult.code+"; msg ="+cosResult.msg;
         Log.w("XIAO",result);
     }
@@ -184,7 +181,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                     }
                 }
                 if(!hasFile){
-                    showTip("请选择待下载的文件");
+                    log.t("请选择待下载的文件");
                     return;
                 }
                 onDownload();
@@ -197,7 +194,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                     }
                 }
                 if(!hasChecked){
-                    showTip("请选择待删除的文件");
+                    log.t("请选择待删除的文件");
                     return;
                 }
                 onDelete();
@@ -212,7 +209,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                     ll_bottom.setVisibility(View.GONE);
                     ll_move.setVisibility(View.VISIBLE);
                 }else{
-                    showTip("请选择待操作的文件");
+                    log.t("请选择待操作的文件");
                 }
                 break;
             case R.id.move_cancel:
@@ -238,9 +235,9 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                 String url = ObjectUtil.getCosPath(item.getDownloadUrl());
                 String cosPathSrc = URLDecoder.decode(url,"utf-8");
                 String cosPathDest = currentPath.concat(item.getFileName());
-                request=ObjectUtil.getCopyObjRequest(bizService,cosPathSrc,cosPathDest);
+                request=ObjectUtil.getCopyObjRequest(MainActivity.instence.bizService,cosPathSrc,cosPathDest);
                 request.setListener(this);
-                bizService.cosClient.copyObjectAsyn(request);
+                MainActivity.instence.bizService.cosClient.copyObjectAsyn(request);
             }catch(UnsupportedEncodingException e){
                 e.printStackTrace();
             }
@@ -266,14 +263,14 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
         try{
             startActivityForResult(intent,OPEN_FILE_CODE);
         }catch(android.content.ActivityNotFoundException ex){
-            showTip("亲，木有文件管理器啊-_-!!");
+            log.t("亲，木有文件管理器啊-_-!!");
         }
     }
 
     private void onCreateDir(final String dirName){
-        CreateDirRequest request = DirUtil.getCreateDirRequest(bizService,currentPath.concat(dirName));
+        CreateDirRequest request = DirUtil.getCreateDirRequest(MainActivity.instence.bizService,currentPath.concat(dirName));
         request.setListener(this);
-        bizService.cosClient.createDirAsyn(request);
+        MainActivity.instence.bizService.cosClient.createDirAsyn(request);
     }
 
     private void onDelete(){
@@ -283,17 +280,17 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                     try{
                         String url = ObjectUtil.getCosPath(item.getDownloadUrl());
                         String decode = URLDecoder.decode(url,"utf-8");
-                        DeleteObjectRequest request = ObjectUtil.getDeleteObjRequest(bizService,decode);
+                        DeleteObjectRequest request = ObjectUtil.getDeleteObjRequest(MainActivity.instence.bizService,decode);
                         request.setListener(this);
-                        bizService.cosClient.deleteObjectAsyn(request);
+                        MainActivity.instence.bizService.cosClient.deleteObjectAsyn(request);
                     }catch(UnsupportedEncodingException e){
                         e.printStackTrace();
                     }
                 }else{
                     String url = currentPath.concat(item.getFileName()).concat(File.separator).replaceFirst("/","");
-                    RemoveEmptyDirRequest request = DirUtil.getRemoveDirRequest(bizService,url);
+                    RemoveEmptyDirRequest request = DirUtil.getRemoveDirRequest(MainActivity.instence.bizService,url);
                     request.setListener(this);
-                    bizService.cosClient.removeEmptyDir(request);
+                    MainActivity.instence.bizService.cosClient.removeEmptyDir(request);
                 }
             }
         }
@@ -305,7 +302,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
             if(item.isChecked()&&item.getType()==0){
                 getObjectRequest=ObjectUtil.getDownloadObjRequest(item.getDownloadUrl(),savePath);
                 getObjectRequest.setListener(this);
-                bizService.cosClient.getObjectAsyn(getObjectRequest);
+                MainActivity.instence.bizService.cosClient.getObjectAsyn(getObjectRequest);
             }
         }
     }
@@ -313,15 +310,9 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
     private void listDir(final String dirName){
         //前缀查询的字符串,为空表示不进行精确查询
         final String prefix = "";
-        ListDirRequest dirRequest = DirUtil.getListDirRequest(bizService,dirName,prefix);
+        ListDirRequest dirRequest = DirUtil.getListDirRequest(MainActivity.instence.bizService,dirName,prefix);
         dirRequest.setListener(this);
-        bizService.cosClient.listDirAsyn(dirRequest);
-    }
-
-
-    private void showTip(final String str){
-        mToast.setText(str);
-        mToast.show();
+        MainActivity.instence.bizService.cosClient.listDirAsyn(dirRequest);
     }
 
     public boolean onBackPressed(){
@@ -350,14 +341,14 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
 
     private void upload(String path){
         if(TextUtils.isEmpty(path)){
-            showTip("请选择文件");
+            log.t("亲，木有文件管理器啊-_-!!");
             return;
         }
         String filename = FileUtils.getFileName(path);
         final String cosPath = currentPath.concat(filename); //cos 上的路径
-        PutObjectRequest request = ObjectUtil.getUploadObjRequest(bizService,cosPath,path);
+        PutObjectRequest request = ObjectUtil.getUploadObjRequest(MainActivity.instence.bizService,cosPath,path);
         request.setListener(this);
-        bizService.cosClient.putObjectAsyn(request);
+        MainActivity.instence.bizService.cosClient.putObjectAsyn(request);
     }
 
     private void showDialog(){
@@ -383,9 +374,9 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                 String url = ObjectUtil.getCosPath(item.getDownloadUrl());
                 String cosPathSrc = URLDecoder.decode(url,"utf-8");
                 String cosPathDest = currentPath.concat(item.getFileName());
-                request=ObjectUtil.getMoveObjRequest(bizService,cosPathSrc,cosPathDest);
+                request=ObjectUtil.getMoveObjRequest(MainActivity.instence.bizService,cosPathSrc,cosPathDest);
                 request.setListener(this);
-                bizService.cosClient.moveObjcetAsyn(request);
+                MainActivity.instence.bizService.cosClient.moveObjcetAsyn(request);
             }catch(UnsupportedEncodingException e){
                 e.printStackTrace();
             }
@@ -403,7 +394,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
             //进入到这里代表没有权限.
             if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),Manifest.permission.CALL_PHONE)){
                 //已经禁止提示了
-                showTip("请在设置中打开应用所需权限");
+               log.t("请在设置中打开应用所需权限");
             }else{
                 ActivityCompat.requestPermissions(getActivity(),PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
             }

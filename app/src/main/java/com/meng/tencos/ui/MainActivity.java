@@ -21,6 +21,8 @@ import android.widget.TextView;
 import com.meng.tencos.lib.materialDesign.*;
 import com.meng.tencos.*;
 
+import static com.meng.tencos.FirstActivity.sharedPreference;
+
 
 public class MainActivity extends Activity{
     public static MainActivity instence;
@@ -30,6 +32,7 @@ public class MainActivity extends Activity{
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerArrowDrawable drawerArrow;
 
+    public BizService bizService;
     private settings settingsFragment;
 	private MainFileListFragment listFragment;
 
@@ -41,18 +44,19 @@ public class MainActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_list);
+        setContentView(R.layout.main_activity);
         instence=this;
         setActionBar();
         findViews();
         initFragment();
         setListener();
         changeTheme();
+        bizService=BizService.getInstance(this);
     }
 
 
     private void changeTheme(){
-        if(BizService.sharedPreference.getBoolean("useLightTheme",true)){
+        if(sharedPreference.getBoolean("useLightTheme",true)){
             mDrawerList.setBackgroundColor(getResources().getColor(android.R.color.background_light));
             rt.setBackgroundColor(getResources().getColor(android.R.color.background_light));
         }else{
@@ -63,7 +67,7 @@ public class MainActivity extends Activity{
             initSettingsFragment(true);
         }else{
             initListFragment(true);
-            if(BizService.sharedPreference.getBoolean("opendraw",true)){
+            if(sharedPreference.getBoolean("opendraw",true)){
                 mDrawerLayout.openDrawer(mDrawerList);
             }
         }
@@ -124,7 +128,7 @@ public class MainActivity extends Activity{
 							initSettingsFragment(true);
 							break;
 						case "退出":
-							if(BizService.sharedPreference.getBoolean("exitsettings")){
+							if(sharedPreference.getBoolean("exitsettings")){
 								System.exit(0);
 							}else{
 								finish();

@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/white"
     android:descendantFocusability="blocksDescendants">
 
     <ImageView
@@ -19,9 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/check_bg"
-        android:button="@null" />
+        android:layout_marginRight="10dp" />
 
 
     <LinearLayout
@@ -39,7 +36,6 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="遇见未知的自己.txt"
-            android:textColor="@color/black"
             android:textSize="15sp" />
 
         <TextView
@@ -48,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="18.8M  修改时间:2012–11–23"
-            android:textColor="@color/grey"
             android:textSize="12sp" />
     </LinearLayout>
 

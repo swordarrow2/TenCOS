@@ -2,10 +2,12 @@
 
 	<style name="AppThemeLight" parent="android:style/Theme.Material.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ActionBarLight</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="AppThemeDark" parent="android:style/Theme.Material">
         <item name="android:actionBarStyle">@style/ActionBarDark</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="ActionBarLight" parent="android:Widget.ActionBar">
@@ -24,7 +26,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">18sp</item>
     </style>
-	
+
 
     <style name="operationBtn">
         <item name="android:layout_width">0dp</item>
