@@ -13,7 +13,7 @@ import android.text.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
-import com.meng.tencos.*;
+
 import com.meng.tencos.adapter.*;
 import com.meng.tencos.bean.*;
 import com.meng.tencos.utils.*;
@@ -27,7 +27,7 @@ import java.util.*;
 import android.support.v7.app.AlertDialog;
 import com.meng.tencos.R;
 
-public class MainList extends android.app.Fragment implements ICmdTaskListener, IDownloadTaskListener, IUploadTaskListener, View.OnClickListener, AdapterView.OnItemClickListener {
+public class MainFileListFragment extends android.app.Fragment implements ICmdTaskListener, IDownloadTaskListener, IUploadTaskListener, View.OnClickListener, AdapterView.OnItemClickListener {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS};
@@ -48,7 +48,7 @@ public class MainList extends android.app.Fragment implements ICmdTaskListener, 
 	
 	@Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState){
-        return inflater.inflate(R.layout.activity_main,container,false);
+        return inflater.inflate(R.layout.main_file_list,container,false);
     }
 
     @Override

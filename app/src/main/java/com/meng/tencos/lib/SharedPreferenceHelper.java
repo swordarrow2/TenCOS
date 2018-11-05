@@ -1,4 +1,4 @@
-package com.meng.qrtools.lib;
+package com.meng.tencos.lib;
 
 import android.content.Context;
 import android.content.SharedPreferences;

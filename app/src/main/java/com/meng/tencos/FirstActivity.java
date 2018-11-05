@@ -3,11 +3,11 @@ package com.meng.tencos;
 import android.app.*;
 import android.content.*;
 import android.os.*;
-import com.meng.qrtools.lib.*;
+
 import com.meng.tencos.utils.*;
 import com.meng.tencos.ui.*;
 
-public class MainView extends Activity{
+public class FirstActivity extends Activity{
 	
 	public static boolean lightTheme = false;
 	
@@ -17,7 +17,7 @@ public class MainView extends Activity{
         lightTheme=BizService.sharedPreference.getBoolean("useLightTheme",true);
 		
 		ExceptionCatcher.getInstance().init(this);
-        startActivity(new Intent(MainView.this,com.meng.MainActivity2.class));
+        startActivity(new Intent(FirstActivity.this,MainActivity.class));
 		finish();
     }
 }

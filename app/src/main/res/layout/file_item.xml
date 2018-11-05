@@ -11,7 +11,7 @@
         android:layout_height="40dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:src="@mipmap/folder" />
+        android:src="@drawable/folder" />
 
     <CheckBox
         android:id="@+id/checkbox"

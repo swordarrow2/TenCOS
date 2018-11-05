@@ -48,7 +48,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@mipmap/upload"
+                android:drawableTop="@drawable/upload"
                 android:gravity="center_horizontal"
                 android:text="上传"
                 android:textColor="@color/grey" />
@@ -57,7 +57,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/bottom_menu_line" />
+            android:src="@drawable/bottom_menu_line" />
 
         <LinearLayout
             android:id="@+id/download"
@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@mipmap/download"
+                android:drawableTop="@drawable/download"
                 android:gravity="center_horizontal"
                 android:text="下载"
                 android:textColor="@color/grey" />
@@ -75,7 +75,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/bottom_menu_line" />
+            android:src="@drawable/bottom_menu_line" />
 
         <LinearLayout
             android:id="@+id/delete"
@@ -84,7 +84,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@mipmap/delete"
+                android:drawableTop="@drawable/delete"
                 android:gravity="center_horizontal"
                 android:text="删除"
                 android:textColor="@color/grey" />
@@ -93,7 +93,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/bottom_menu_line" />
+            android:src="@drawable/bottom_menu_line" />
 
         <LinearLayout
             android:id="@+id/create"
@@ -102,7 +102,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@mipmap/create"
+                android:drawableTop="@drawable/create"
                 android:gravity="center_horizontal"
                 android:text="新建"
                 android:textColor="@color/grey" />
@@ -111,7 +111,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/bottom_menu_line" />
+            android:src="@drawable/bottom_menu_line" />
 
         <LinearLayout
             android:id="@+id/more"
@@ -120,7 +120,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@mipmap/more"
+                android:drawableTop="@drawable/more"
                 android:gravity="center_horizontal"
                 android:text="更多"
                 android:textColor="@color/grey" />
@@ -142,7 +142,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@mipmap/create"
+            android:drawableTop="@drawable/create"
             android:gravity="center_horizontal"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
@@ -152,14 +152,14 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/bottom_menu_line" />
+            android:src="@drawable/bottom_menu_line" />
 
         <TextView
             android:id="@+id/move_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@mipmap/cancel"
+            android:drawableTop="@drawable/cancel"
             android:gravity="center_horizontal"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
@@ -169,14 +169,14 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/bottom_menu_line" />
+            android:src="@drawable/bottom_menu_line" />
 
         <TextView
             android:id="@+id/move"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@mipmap/move"
+            android:drawableTop="@drawable/move"
             android:gravity="center_horizontal"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
@@ -188,7 +188,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@mipmap/copy"
+            android:drawableTop="@drawable/copy"
             android:gravity="center_horizontal"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"

@@ -1,4 +1,4 @@
-package com.meng;
+package com.meng.tencos.ui;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -18,14 +18,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-import com.meng.qrtools.settings;
-import com.meng.qrtools.lib.materialDesign.*;
+import com.meng.tencos.lib.materialDesign.*;
 import com.meng.tencos.*;
-import com.meng.tencos.ui.*;
 
 
-public class MainActivity2 extends Activity{
-    public static MainActivity2 instence;
+public class MainActivity extends Activity{
+    public static MainActivity instence;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private RelativeLayout rt;
@@ -33,7 +31,7 @@ public class MainActivity2 extends Activity{
     private DrawerArrowDrawable drawerArrow;
 
     private settings settingsFragment;
-	private MainList listFragment;
+	private MainFileListFragment listFragment;
 
     public TextView rightText;
 
@@ -73,7 +71,7 @@ public class MainActivity2 extends Activity{
 
     @Override
     public void setTheme(int resid){
-        if(MainView.lightTheme){
+        if(FirstActivity.lightTheme){
             super.setTheme(R.style.AppThemeLight);
         }else{
             super.setTheme(R.style.AppThemeDark);
@@ -155,7 +153,7 @@ public class MainActivity2 extends Activity{
 	private void initListFragment(boolean showNow){
         FragmentTransaction transactionsettings=manager.beginTransaction();
         if(listFragment==null){
-            listFragment=new MainList();
+            listFragment=new MainFileListFragment();
             transactionsettings.add(R.id.main_activityLinearLayout,listFragment);
         }
         hideFragment(transactionsettings);

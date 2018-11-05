@@ -7,8 +7,8 @@ import com.tencent.cos.*;
 import java.util.*;
 import javax.crypto.*;
 import javax.crypto.spec.*;
-import com.meng.tencos.*;
-import com.meng.qrtools.lib.*;
+
+import com.meng.tencos.lib.*;
 
 
 public class BizService extends Application {

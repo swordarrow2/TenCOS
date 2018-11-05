@@ -1,8 +1,8 @@
-package com.meng.qrtools;
+package com.meng.tencos.lib;
 
 import android.widget.Toast;
 
-import com.meng.MainActivity2;
+import com.meng.tencos.ui.MainActivity;
 
 public class log{
 
@@ -10,12 +10,12 @@ public class log{
         if(o instanceof Exception){
             ((Exception)o).printStackTrace();
         }
-        MainActivity2.instence.runOnUiThread(new Runnable(){
+        MainActivity.instence.runOnUiThread(new Runnable(){
 
 				@Override
 				public void run(){
 					// TODO: Implement this method
-					Toast.makeText(MainActivity2.instence,"发生错误:"+o.toString(),Toast.LENGTH_SHORT).show();
+					Toast.makeText(MainActivity.instence,"发生错误:"+o.toString(),Toast.LENGTH_SHORT).show();
 					i("发生错误:"+o.toString());
 				}
 			});
@@ -23,13 +23,13 @@ public class log{
 
 
     public static void i(final Object o){
-        MainActivity2.instence.runOnUiThread(new Runnable(){
+        MainActivity.instence.runOnUiThread(new Runnable(){
 
 				@Override
 				public void run(){
 					// TODO: Implement this method
-					MainActivity2.instence.rightText.setText(
-                        MainActivity2.instence.rightText.getText().toString()+
+					MainActivity.instence.rightText.setText(
+                        MainActivity.instence.rightText.getText().toString()+
 						o.toString()+"\n"
 					);
 				}
@@ -37,12 +37,12 @@ public class log{
     }
 
     public static void t(final Object o){
-        MainActivity2.instence.runOnUiThread(new Runnable(){
+        MainActivity.instence.runOnUiThread(new Runnable(){
 
 				@Override
 				public void run(){
 					// TODO: Implement this method
-					Toast.makeText(MainActivity2.instence,o.toString(),Toast.LENGTH_SHORT).show();
+					Toast.makeText(MainActivity.instence,o.toString(),Toast.LENGTH_SHORT).show();
 					i(o.toString());
 				}
 			});

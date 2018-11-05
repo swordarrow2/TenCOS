@@ -1,4 +1,4 @@
-package com.meng.qrtools.lib.materialDesign;
+package com.meng.tencos.lib.materialDesign;
 
 import android.content.Context;
 import android.graphics.Canvas;

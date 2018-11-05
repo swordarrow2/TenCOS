@@ -1,4 +1,4 @@
-package com.meng.qrtools;
+package com.meng.tencos.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ public class settings extends PreferenceFragment{
         cb.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
             @Override
             public boolean onPreferenceChange(Preference preference,Object newValue){
-                getActivity().startActivity(new Intent(getActivity().getApplicationContext(),MainView.class).putExtra("setTheme",true));
+                getActivity().startActivity(new Intent(getActivity().getApplicationContext(),FirstActivity.class).putExtra("setTheme",true));
                 getActivity().finish();
                 getActivity().overridePendingTransition(0,0);
                 return true;

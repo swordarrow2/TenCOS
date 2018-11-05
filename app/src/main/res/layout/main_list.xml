@@ -18,7 +18,7 @@
                 android:layout_width="36dip"
                 android:layout_height="36dip"
                 android:paddingLeft="10dip"
-                android:src="@mipmap/icon_yun"
+                android:src="@drawable/icon_yun"
                 android:visibility="gone" />
 
         </RelativeLayout>
