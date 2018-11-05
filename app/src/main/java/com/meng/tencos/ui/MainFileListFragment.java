@@ -8,7 +8,6 @@ import android.net.*;
 import android.os.*;
 import android.support.v4.app.*;
 import android.support.v4.content.*;
-import android.support.v7.app.*;
 import android.text.*;
 import android.util.*;
 import android.view.*;
@@ -24,7 +23,6 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import android.support.v7.app.AlertDialog;
 import com.meng.tencos.R;
 
 public class MainFileListFragment extends android.app.Fragment implements ICmdTaskListener, IDownloadTaskListener, IUploadTaskListener, View.OnClickListener, AdapterView.OnItemClickListener{
