@@ -9,6 +9,7 @@ import com.tencent.cos.model.*;
 import java.text.*;
 import java.util.*;
 import org.json.*;
+import com.meng.tencos.lib.*;
 
 /**
  * Created by Gu on 2017/8/1.
@@ -84,7 +85,9 @@ public class DirUtil {
             for (int i = 0; i < length; i++) {
                 str = listObjectResult.infos.get(i);
                 try {
+					
                     jsonObject = new JSONObject(str);
+					long size=jsonObject.optLong("filesize");
                     String time = getTime(jsonObject.optString("ctime"));
                     //创建的时间戳
                     long stamp = Long.parseLong(jsonObject.optString("ctime"));
@@ -122,9 +125,10 @@ public class DirUtil {
                         type = 1;
                     }
 
-                    files.add(new FileItem(resId, fileName, time, stamp, type,downloadUrl));
-                } catch (JSONException e) {
+                    files.add(new FileItem(resId, fileName,size, time, stamp, type,downloadUrl));
+                } catch (Exception e) {
                     e.printStackTrace();
+					log.e(e);
                 }
             }
             if (files.size() >= 2)

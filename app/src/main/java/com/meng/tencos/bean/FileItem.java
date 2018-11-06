@@ -4,14 +4,23 @@ package com.meng.tencos.bean;
 public class FileItem {
     private int fileIconRes;
     private String fileName;
+	private long fileSize;
     //创建的时间字符串
     private String fileTime;
     //创建的时间戳
     private long ctime;
     //记录类型 文件夹：1；文件：0
     private int type;
-    private String downloadUrl;
+    private String url;
     private boolean isChecked;
+
+	public void setFileSize(long fileSize){
+		this.fileSize=fileSize;
+	}
+
+	public long getFileSize(){
+		return fileSize;
+	}
 
     public boolean isChecked() {
         return isChecked;
@@ -21,21 +30,22 @@ public class FileItem {
         isChecked = checked;
     }
 
-    public FileItem(int fileIconRes, String fileName, String fileTime, long ctime, int type, String downloadUrl) {
+    public FileItem(int fileIconRes, String fileName, long fileSize,String fileTime, long ctime, int type, String url) {
         this.fileIconRes = fileIconRes;
+		this.fileSize=fileSize;
         this.fileName = fileName;
         this.fileTime = fileTime;
         this.ctime = ctime;
         this.type = type;
-        this.downloadUrl = downloadUrl;
+        this.url = url;
     }
 
-    public String getDownloadUrl() {
-        return downloadUrl;
+    public String getUrl() {
+        return url;
     }
 
-    public void setDownloadUrl(String downloadUrl) {
-        this.downloadUrl = downloadUrl;
+    public void setDownloadUrl(String url) {
+        this.url = url;
     }
 
     public int getFileIconRes() {

@@ -53,7 +53,7 @@ public class FileItemAdapter extends BaseAdapter{
         holder.tv_fileName.setText(item.getFileName());
         if(item.getFileTime().length()!=0){
             holder.tv_fileMsg.setVisibility(View.VISIBLE);
-            holder.tv_fileMsg.setText(item.getFileTime());
+            holder.tv_fileMsg.setText(item.getFileTime()+"  "+item.getFileSize());
         }else{
             holder.tv_fileMsg.setVisibility(View.GONE);
         }

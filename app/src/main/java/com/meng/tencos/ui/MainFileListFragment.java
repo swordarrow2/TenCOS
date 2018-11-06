@@ -103,9 +103,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
 
 				@Override
 				public boolean onItemLongClick(AdapterView<?> p1,View p2,int p3,long p4){
-					// TODO: Implement this method
-					FileItem fi=files.get(p3);
-					log.t("复制链接"+fi.getDownloadUrl());
+					log.t("提取链接"+URLDecoder.decode(files.get(p3).getUrl()));
 					return false;
 				}
 			});
@@ -253,7 +251,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
         CopyObjectRequest request;
         for(FileItem item : move_files){
             try{
-                String url = ObjectUtil.getCosPath(item.getDownloadUrl());
+                String url = ObjectUtil.getCosPath(item.getUrl());
                 String cosPathSrc = URLDecoder.decode(url,"utf-8");
                 String cosPathDest = currentPath.concat(item.getFileName());
 				log.t("将"+cosPathSrc+"复制到"+cosPathDest);
@@ -300,7 +298,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
             if(item.isChecked()){
                 if(item.getType()==0){
                     try{
-                        String url = ObjectUtil.getCosPath(item.getDownloadUrl());
+                        String url = ObjectUtil.getCosPath(item.getUrl());
                         String decode = URLDecoder.decode(url,"utf-8");
 						log.t("删除"+decode);
                         DeleteObjectRequest request = ObjectUtil.getDeleteObjRequest(MainActivity.instence.bizService,decode);
@@ -323,9 +321,9 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
         GetObjectRequest getObjectRequest;
         for(FileItem item : files){
             if(item.isChecked()&&item.getType()==0){
-                getObjectRequest=ObjectUtil.getDownloadObjRequest(item.getDownloadUrl(),savePath);
+                getObjectRequest=ObjectUtil.getDownloadObjRequest(item.getUrl(),savePath);
                 getObjectRequest.setListener(this);
-				log.t("下载"+item.getDownloadUrl());
+				log.t("下载"+item.getUrl());
                 MainActivity.instence.bizService.cosClient.getObjectAsyn(getObjectRequest);
             }
         }
@@ -393,7 +391,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
         MoveObjectRequest request;
         for(FileItem item : move_files){
             try{
-                String url = ObjectUtil.getCosPath(item.getDownloadUrl());
+                String url = ObjectUtil.getCosPath(item.getUrl());
                 String cosPathSrc = URLDecoder.decode(url,"utf-8");
                 String cosPathDest = currentPath.concat(item.getFileName());
                 request=ObjectUtil.getMoveObjRequest(MainActivity.instence.bizService,cosPathSrc,cosPathDest);
