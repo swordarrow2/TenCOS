@@ -47,16 +47,12 @@ public class BizService{
     }
 
     public BizService(Context c){
+		//如果过去到的值为空,则使用demo的值
         appid=sharedPreference.getValue("appid","1253703400");
-        //appid="1257751754";
         bucket=sharedPreference.getValue("bucketname","demo");
-        //bucket = "swordarrow2";
         SecretId=sharedPreference.getValue("secretid","AKIDe8QWEnIWby92mmgCEUZTF8qeKwQj91MV");
-        //SecretId = "AKIDeDbnnbpMIG8qOjlrfHhASZWHpBMLqpHX";
         SecretKey=sharedPreference.getValue("secretkey","l9NohaoxufEb0SMZPTM6g4GG3f1GRmGM");
-        //SecretKey="FdtyrY3MUQAi8YryzqV3PaZMxNejcO0Q";
         region=sharedPreference.getValue("region","gz");
-        //region="bj";
 
         bizService=this;
         config.setEndPoint(region);

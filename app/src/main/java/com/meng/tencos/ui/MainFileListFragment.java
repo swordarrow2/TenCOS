@@ -25,6 +25,8 @@ import java.net.*;
 import java.util.*;
 
 import com.meng.tencos.R;
+import android.view.View.*;
+import android.widget.AdapterView.*;
 
 public class MainFileListFragment extends android.app.Fragment implements ICmdTaskListener, IDownloadTaskListener, IUploadTaskListener, View.OnClickListener, AdapterView.OnItemClickListener{
 
@@ -88,6 +90,25 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
         move.setOnClickListener(this);
         copy=(TextView)v. findViewById(R.id.copy);
         copy.setOnClickListener(this);
+		ll_more.setOnLongClickListener(new OnLongClickListener(){
+
+				@Override
+				public boolean onLongClick(View p1){
+					listDir(currentPath);
+					log.t("刷新列表");
+					return false;
+				}
+			});
+		lv_files.setOnItemLongClickListener(new OnItemLongClickListener(){
+
+				@Override
+				public boolean onItemLongClick(AdapterView<?> p1,View p2,int p3,long p4){
+					// TODO: Implement this method
+					FileItem fi=files.get(p3);
+					log.t("复制链接"+fi.getDownloadUrl());
+					return false;
+				}
+			});
 
     }
 
@@ -110,7 +131,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
     @Override
     public void onCancel(COSRequest cosRequest,COSResult cosResult){
         String result = "code ="+cosResult.code+"; msg ="+cosResult.msg;
-        Log.w("XIAO",result);
+        log.t(result);
     }
 
     @Override
@@ -157,7 +178,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
         }
         log.t(str);
         String result = "code ="+cosResult.code+"; msg ="+cosResult.msg;
-        Log.w("XIAO",result);
+        log.t(result);
     }
 
 
@@ -235,6 +256,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                 String url = ObjectUtil.getCosPath(item.getDownloadUrl());
                 String cosPathSrc = URLDecoder.decode(url,"utf-8");
                 String cosPathDest = currentPath.concat(item.getFileName());
+				log.t("将"+cosPathSrc+"复制到"+cosPathDest);
                 request=ObjectUtil.getCopyObjRequest(MainActivity.instence.bizService,cosPathSrc,cosPathDest);
                 request.setListener(this);
                 MainActivity.instence.bizService.cosClient.copyObjectAsyn(request);
@@ -280,6 +302,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
                     try{
                         String url = ObjectUtil.getCosPath(item.getDownloadUrl());
                         String decode = URLDecoder.decode(url,"utf-8");
+						log.t("删除"+decode);
                         DeleteObjectRequest request = ObjectUtil.getDeleteObjRequest(MainActivity.instence.bizService,decode);
                         request.setListener(this);
                         MainActivity.instence.bizService.cosClient.deleteObjectAsyn(request);
@@ -302,6 +325,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
             if(item.isChecked()&&item.getType()==0){
                 getObjectRequest=ObjectUtil.getDownloadObjRequest(item.getDownloadUrl(),savePath);
                 getObjectRequest.setListener(this);
+				log.t("下载"+item.getDownloadUrl());
                 MainActivity.instence.bizService.cosClient.getObjectAsyn(getObjectRequest);
             }
         }
@@ -326,9 +350,7 @@ public class MainFileListFragment extends android.app.Fragment implements ICmdTa
 
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data){
-        if(resultCode!=Activity.RESULT_OK||data==null){
-            return;
-        }
+        if(resultCode!=Activity.RESULT_OK||data==null)return;
         switch(requestCode){
             case OPEN_FILE_CODE:
                 Uri uri = data.getData();
